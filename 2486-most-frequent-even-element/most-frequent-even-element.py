@@ -1,11 +1,18 @@
 class Solution:
     def mostFrequentEven(self, nums: List[int]) -> int:
-        res = [0]*1000001
+        map = {}
         for num in nums:
             if num%2==0:
-                res[num]+=1
-        maxval = max(res)
-        if maxval!=0:
-            return  res.index(maxval)
-        return -1
-        
+                if num in map:
+                    map[num]+=1
+                else:
+                    map[num]=1
+        maxele = 0
+        maxidx = -1
+        for i in map.keys():
+            if map[i]>maxele:
+                maxele=map[i]
+                maxidx= i
+            if map[i]==maxele and i<maxidx:
+                maxidx=i
+        return maxidx
