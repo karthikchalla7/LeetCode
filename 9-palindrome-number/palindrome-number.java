@@ -5,10 +5,12 @@ class Solution {
         int dup = x;
         while(dup!=0){
             int rem = dup%10;
-            res = res*10 + rem;
+            res = rem+res*10;
             dup/=10;
         }
+
         if(res==x) return true;
         return false;
+
     }
 }
