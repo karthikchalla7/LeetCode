@@ -2,11 +2,16 @@ class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
         
         if(arr.length!=target.length) return false;
+        int[] map = new int[1001];
         int n = target.length;
-        Arrays.sort(target);
-        Arrays.sort(arr);
         for(int i=0;i<n;i++){
-            if(arr[i]!=target[i]) return false;
+            map[target[i]]++;
+            map[arr[i]]--;
+        }
+
+        for(int i=0;i<n;i++){
+            if(map[arr[i]]!=0 || map[target[i]]!=0)
+            return false;
         }
         return true;
     }
