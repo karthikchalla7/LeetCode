@@ -1,21 +1,24 @@
 class Solution {
     public int minimumPushes(String word) {
-        int n = word.length();
-        int push = 0;
-        for(int i=0;i<n;i++){
-            if(i<8){
-                push+=1;
-            }
-            else if(i<16){
-                push+=2;
-            }
-            else if(i<24){
-                push+=3;
-            }
-            else{
-                push+=4;
+
+        char[] arr = word.toCharArray();
+        Arrays.sort(arr);
+
+        String keys = "23456789";
+
+        int total = 0;
+        int keyidx = 0;
+        int pushkey =1;
+        for(char c:arr){
+            total+=pushkey;
+            keyidx++;
+            if(keyidx==keys.length()){
+                keyidx = 0;
+                pushkey+=1;
             }
         }
-        return push;
+        return total;
+
+        
     }
 }
