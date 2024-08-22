@@ -1,20 +1,19 @@
 class Solution {
     public int findComplement(int num) {
         
-        String str = "";
+        ArrayList<Integer> arr = new ArrayList<>();
         while(num>0){
-            if((num&1)==0){
-                str+='1';
-            }
-            else{
-                str+='0';
-            }
-            num>>=1; // n/=2;
+            arr.add(num%2);
+            num>>=1;
         }
-        StringBuilder temp = new StringBuilder(str);
-        String st = temp.reverse().toString();
-        int res = Integer.parseInt(st,2);
-        return res;
 
+        int base = 1;
+        int new_num = 0;
+        for(int i=0;i<arr.size();i++){
+            arr.set(i,arr.get(i)^1);
+            new_num+=base*arr.get(i);
+            base*=2;
+        }
+        return new_num;
     }
 }
