@@ -10,9 +10,9 @@ class Solution {
             map.put(str,map.getOrDefault(str,0)+1);
         }
         ArrayList<String> list = new ArrayList<>();
-        map.forEach((key,value)->{
-            if(value==1) list.add(key);
-        });
+        for(String word:map.keySet()){
+            if(map.get(word)==1) list.add(word);
+        }
 
         return list.toArray(new String[list.size()]);
     }
